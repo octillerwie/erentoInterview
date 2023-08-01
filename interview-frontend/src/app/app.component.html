@@ -11,14 +11,13 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Data from Backend:</h1>
+    <h1>Cities of Germany search</h1>
     <form (submit)="onSearch()">
       <label for="cityName">Enter City Name:</label>
       <input type="text" id="cityName" [(ngModel)]="city" name="cityName" />
       <button type="submit">Search</button>
     </form>
 
-    <!-- Display search results -->
     <div *ngIf="searchResults.length > 0">
       <h2>Search Results:</h2>
       <ul>

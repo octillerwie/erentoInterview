@@ -29,7 +29,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.citiesService.getCities().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.cities = data as City[];
     });
   }
