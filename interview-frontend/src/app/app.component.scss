@@ -1,0 +1,76 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+$primary-color: #8a4de8; 
+$font-family: 'Roboto', sans-serif; 
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+ul li {
+  list-style-type: none;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.container {
+  text-align: center;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  color: #000;
+}
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  flex: 1;
+}
+
+.search-btn {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 30px; 
+  background-color: $primary-color; 
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s, transform 0.2s;
+  margin-left: 5px;
+}
+
+.search-btn:hover {
+  background-color: darken($primary-color, 10%);
+  transform: scale(1.1);
+}
+
+.city-list {
+  text-align: left;
+}

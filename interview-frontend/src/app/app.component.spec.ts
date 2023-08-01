@@ -30,7 +30,7 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Cities of Germany search');
+    expect(compiled.querySelector('h1')?.textContent).toContain('German City Search');
   });
 
   // Add more tests for your component logic, interactions, etc.
