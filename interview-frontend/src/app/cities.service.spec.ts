@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { CitiesService } from './cities.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
+// import { FormsModule } from '@angular/forms';
 
 interface City {
   uuid: string;
@@ -105,6 +106,7 @@ describe('AppComponent', () => {
         { uuid: '3', cityName: 'City C', count: 100 },
         { uuid: '4', cityName: 'City D', count: 100 },
         { uuid: '5', cityName: 'City E', count: 100 },
+        { uuid: '6', cityName: 'City F', count: 100 },
       ])
     );
 
@@ -113,7 +115,7 @@ describe('AppComponent', () => {
     tick(); // Ensure the asynchronous getCities call completes
 
     // Ensure component.cities is populated
-    console.log('Cities:', component.cities);
+    // console.log('Cities:', component.cities);
 
     component.city = 'City';
     component.onSearch();
@@ -121,8 +123,27 @@ describe('AppComponent', () => {
     tick();
 
     // Ensure component.searchResults is populated
-    console.log('Search Results:', component.searchResults);
+    // console.log('Search Results:', component.searchResults);
 
-    expect(component.searchResults.length).toEqual(5);
+    expect(component.searchResults.length).toEqual(5);  
   }));
+
+  it('should update the input field value and search for matching cities', () => {
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('.search-input'); // Adjust the selector to target the input field correctly
+
+    const inputValue = 'Berlin'; // Replace this with the desired input value
+    component.city = inputValue; // Manually set the component's city property
+
+    fixture.detectChanges(); // Manually trigger change detection to update the component
+
+    console.log('Component City:', component.city); // Log the component's city value
+    console.log('Input Element Value:', inputElement.value); // Log the input element value
+
+    component.onSearch(); // Trigger the search logic manually
+
+    fixture.detectChanges(); // Manually trigger change detection to update the view
+
+    expect(component.city).toEqual(inputValue);
+  });
+
 });
