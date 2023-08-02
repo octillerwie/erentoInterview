@@ -17,6 +17,7 @@ export class AppComponent {
   cities: City[];
   searchResults: City[];
   city: string;
+  showNoResultsMessage: boolean;
   
   constructor(
     private citiesService: CitiesService,
@@ -24,6 +25,7 @@ export class AppComponent {
     this.cities = [];
     this.searchResults = [];
     this.city = '';
+    this.showNoResultsMessage = false;
   }
   title = 'city-ui';
 
@@ -38,6 +40,7 @@ export class AppComponent {
     // no input = no result
     if (this.city.trim() === '') {
       this.searchResults = [];
+      this.showNoResultsMessage = true;
       return;
     }
 
@@ -48,5 +51,7 @@ export class AppComponent {
 
     // max 5 results
     this.searchResults = this.searchResults.slice(0, 5);
+
+    this.showNoResultsMessage = this.searchResults.length === 0;
   } 
 }

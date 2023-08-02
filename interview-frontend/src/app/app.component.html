@@ -28,14 +28,13 @@
         </div>
       </form>
       <div class="city-list">
+        <div *ngIf="showNoResultsMessage" class="notification">Please enter a city name.</div>
         <div *ngIf="searchResults.length > 0">
           <ul>
-            <li *ngFor="let item of searchResults">
-              {{ item.cityName }}
-            </li>
+            <li *ngFor="let item of searchResults">{{ item.cityName }}</li>
           </ul>
         </div>
       </div>
-    </div>
+    </div>    
   </body>
 </html>
