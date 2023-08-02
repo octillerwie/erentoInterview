@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { CitiesService } from './cities.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
-// import { FormsModule } from '@angular/forms';
 
 interface City {
   uuid: string;
@@ -36,8 +35,8 @@ describe('AppComponent', () => {
 
     citiesService = TestBed.inject(CitiesService);
     httpTestingController = TestBed.inject(HttpTestingController);
-    fixture = TestBed.createComponent(AppComponent); // Create the fixture here
-    component = fixture.componentInstance; // Get the component instance here
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance; 
   });
 
   it('should be created', () => {
@@ -48,7 +47,7 @@ describe('AppComponent', () => {
     let cities: City[] | undefined;
     citiesService.getCities().subscribe((data) => {
       cities = data as City[];
-      expect(cities?.length).toEqual(100); // Verify the length of the array
+      expect(cities?.length).toEqual(100);
     });
 
     const req = httpTestingController.expectOne(
@@ -63,11 +62,9 @@ describe('AppComponent', () => {
     }));
     req.flush(dummyCities);
 
-    // Simulate the completion of the observable
     tick();
     httpTestingController.verify();
 
-    // The test should now complete properly
   }));
 
   it('should fetch cities from the API', () => {
@@ -98,7 +95,6 @@ describe('AppComponent', () => {
   });
 
   it('should display matching cities with a maximum of 5 results', fakeAsync(() => {
-    // Spy on getCities to avoid the actual HTTP call
     spyOn(citiesService, 'getCities').and.returnValue(
       of([
         { uuid: '1', cityName: 'City A', count: 100 },
@@ -110,11 +106,9 @@ describe('AppComponent', () => {
       ])
     );
 
-    // Call ngOnInit manually to trigger getCities and populate component.cities
     component.ngOnInit();
-    tick(); // Ensure the asynchronous getCities call completes
+    tick();
 
-    // Ensure component.cities is populated
     // console.log('Cities:', component.cities);
 
     component.city = 'City';
@@ -122,7 +116,6 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     tick();
 
-    // Ensure component.searchResults is populated
     // console.log('Search Results:', component.searchResults);
 
     expect(component.searchResults.length).toEqual(5);  
@@ -131,17 +124,17 @@ describe('AppComponent', () => {
   it('should update the input field value and search for matching cities', () => {
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('.search-input'); // Adjust the selector to target the input field correctly
 
-    const inputValue = 'Berlin'; // Replace this with the desired input value
-    component.city = inputValue; // Manually set the component's city property
+    const inputValue = 'Berlin'; 
+    component.city = inputValue; 
 
-    fixture.detectChanges(); // Manually trigger change detection to update the component
+    fixture.detectChanges(); 
 
-    console.log('Component City:', component.city); // Log the component's city value
-    console.log('Input Element Value:', inputElement.value); // Log the input element value
+    // console.log('Component City:', component.city); 
+    // console.log('Input Element Value:', inputElement.value);
 
-    component.onSearch(); // Trigger the search logic manually
+    component.onSearch(); 
 
-    fixture.detectChanges(); // Manually trigger change detection to update the view
+    fixture.detectChanges();
 
     expect(component.city).toEqual(inputValue);
   });
